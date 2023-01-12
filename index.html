@@ -15,6 +15,7 @@
       src="https://kit.fontawesome.com/c9182cecf9.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <style>
       .app {
         margin: 10%;
@@ -29,21 +30,21 @@
       <div class="app border border-top-0 rounded">
         <div class="row mb-5">
           <div class="col-2"></div>
-          <h2 class="col-5">Tehran</h2>
-          <div class="col-4 form-js">
+          <h2 class="col-5" id="city">Tehran</h2>
+          <form class="col-4" id="search-form">
             <div class="form-group">
               <input
                 type="text"
-                class="form-control"
+                class="form-control search-city"
                 id="exampleInputPassword1"
                 placeholder="Change city"
               />
             </div>
-          </div>
+          </form>
         </div>
         <div class="row">
           <div class="col-2"></div>
-          <h1 class="col-1">10</h1>
+          <h1 class="col-1" id="current-temp">10</h1>
           <div class="col-1">today</div>
           <div class="col-4"></div>
           <h3 class="col-2">icon</h3>

@@ -47,3 +47,36 @@ let number = now.getDay();
 tmrPlusOne(number);
 tmrPlusTwo(number);
 tmrPlusThree(number);
+
+// Search engine
+function cptlFrstWrd(word) {
+  let firstLetter = word.charAt(0).toUpperCase();
+  let remainingLetters = word.substring(1);
+  let capitalWord = firstLetter + remainingLetters;
+  console.log(capitalWord);
+  return capitalWord;
+}
+function showTemp(response) {
+  let curTemp = response.data.temperature.current;
+  let curTempElement = document.querySelector("#current-temp");
+
+  curTempElement.innerHTML = curTemp;
+}
+
+function searchCity(event) {
+  event.preventDefault();
+  let inputCity = document.querySelector(".search-city");
+  let inputCityTitle = cptlFrstWrd(inputCity.value);
+
+  let apiKey = "t59d1foebd7d6a037ffd3299548b5a20";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${inputCityTitle}&key=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(showTemp);
+
+  let city = document.querySelector("#city");
+  city.innerHTML = inputCityTitle;
+  inputCity.value = null;
+}
+
+let searchEngine = document.querySelector("#search-form");
+searchEngine.addEventListener("submit", searchCity);
