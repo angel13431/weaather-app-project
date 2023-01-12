@@ -73,7 +73,19 @@ function showCurTemp(response) {
 
 function showFTemp(response) {
   console.log(response);
+  //today
+
+  let todayMax = Math.round(response.data.daily[0].temperature.maximum);
+  let todayMin = Math.round(response.data.daily[0].temperature.minimum);
+
+  let todayMaxElement = document.querySelector("#today-max");
+  let todayMinElement = document.querySelector("#today-min");
+
+  todayMaxElement.innerHTML = todayMax;
+  todayMinElement.innerHTML = todayMin;
+
   // tmorrow
+
   let tmrMxTmp = Math.round(response.data.daily[1].temperature.maximum);
   let tmrMnTmp = Math.round(response.data.daily[1].temperature.minimum);
   let tmrCon = response.data.daily[1].condition.description;
