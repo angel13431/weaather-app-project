@@ -63,12 +63,15 @@ function showCurTemp(response) {
 
   let curTemp = Math.round(response.data.temperature.current);
   let curCon = response.data.condition.description;
+  let curIcon = response.data.condition.icon_url;
 
   let curTempElement = document.querySelector("#current-temp");
   let curConElement = document.querySelector("#current-condition");
+  let curIconElement = document.querySelector("#current-icon");
 
   curTempElement.innerHTML = curTemp;
   curConElement.innerHTML = curCon;
+  curIconElement.src = curIcon;
 }
 
 function showFTemp(response) {
@@ -89,58 +92,70 @@ function showFTemp(response) {
   let tmrMxTmp = Math.round(response.data.daily[1].temperature.maximum);
   let tmrMnTmp = Math.round(response.data.daily[1].temperature.minimum);
   let tmrCon = response.data.daily[1].condition.description;
+  let tmrIcon = response.data.daily[1].condition.icon_url;
 
   console.log(response.data.daily[1].condition.description);
 
   let tmrMxTmpElmnt = document.querySelector("#tmr-max");
   let tmrMnTmpElmnt = document.querySelector("#tmr-min");
   let tmrConElmnt = document.querySelector("#tomorrow-condition");
+  let tmrIconElmnt = document.querySelector("#tomorrow-icon");
 
   tmrMxTmpElmnt.innerHTML = tmrMxTmp;
   tmrMnTmpElmnt.innerHTML = tmrMnTmp;
   tmrConElmnt.innerHTML = tmrCon;
+  tmrIconElmnt.src = tmrIcon;
 
   // day after tomorrow
 
   let tmr1MxTmp = Math.round(response.data.daily[2].temperature.maximum);
   let tmr1MnTmp = Math.round(response.data.daily[2].temperature.minimum);
-  let tmr1Con = response.data.daily[1].condition.description;
+  let tmr1Con = response.data.daily[2].condition.description;
+  let tmr1Icon = response.data.daily[2].condition.icon_url;
 
   let tmr1MxTmpElmnt = document.querySelector("#tmr-plus-1-max");
   let tmr1MnTmpElmnt = document.querySelector("#tmr-plus-1-min");
   let tmr1ConElmnt = document.querySelector("#tomorrow-1-condition");
+  let tmr1IconElmnt = document.querySelector("#tomorrow-1-icon");
 
   tmr1MxTmpElmnt.innerHTML = tmr1MxTmp;
   tmr1MnTmpElmnt.innerHTML = tmr1MnTmp;
   tmr1ConElmnt.innerHTML = tmr1Con;
+  tmr1IconElmnt.src = tmr1Icon;
 
   // day 3
 
   let tmr2MxTmp = Math.round(response.data.daily[3].temperature.maximum);
   let tmr2MnTmp = Math.round(response.data.daily[3].temperature.minimum);
-  let tmr2Con = response.data.daily[1].condition.description;
+  let tmr2Con = response.data.daily[3].condition.description;
+  let tmr2Icon = response.data.daily[3].condition.icon_url;
 
   let tmr2MxTmpElmnt = document.querySelector("#tmr-plus-2-max");
   let tmr2MnTmpElmnt = document.querySelector("#tmr-plus-2-min");
   let tmr2ConElmnt = document.querySelector("#tomorrow-2-condition");
+  let tmr2IconElmnt = document.querySelector("#tomorrow-2-icon");
 
   tmr2MxTmpElmnt.innerHTML = tmr2MxTmp;
   tmr2MnTmpElmnt.innerHTML = tmr2MnTmp;
   tmr2ConElmnt.innerHTML = tmr2Con;
+  tmr2IconElmnt.src = tmr2Icon;
 
   // day 4
 
   let tmr3MxTmp = Math.round(response.data.daily[4].temperature.maximum);
   let tmr3MnTmp = Math.round(response.data.daily[4].temperature.minimum);
-  let tmr3Con = response.data.daily[1].condition.description;
+  let tmr3Con = response.data.daily[4].condition.description;
+  let tmr3Icon = response.data.daily[4].condition.icon_url;
 
   let tmr3MxTmpElmnt = document.querySelector("#tmr-plus-3-max");
   let tmr3MnTmpElmnt = document.querySelector("#tmr-plus-3-min");
   let tmr3ConElmnt = document.querySelector("#tomorrow-3-condition");
+  let tmr3IconElmnt = document.querySelector("#tomorrow-3-icon");
 
   tmr3MxTmpElmnt.innerHTML = tmr3MxTmp;
   tmr3MnTmpElmnt.innerHTML = tmr3MnTmp;
   tmr3ConElmnt.innerHTML = tmr3Con;
+  tmr3IconElmnt.src = tmr3Icon;
 }
 
 // Search Engine
