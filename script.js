@@ -76,45 +76,59 @@ function showFTemp(response) {
   // tmorrow
   let tmrMxTmp = Math.round(response.data.daily[1].temperature.maximum);
   let tmrMnTmp = Math.round(response.data.daily[1].temperature.minimum);
+  let tmrCon = response.data.daily[1].condition.description;
+
+  console.log(response.data.daily[1].condition.description);
 
   let tmrMxTmpElmnt = document.querySelector("#tmr-max");
   let tmrMnTmpElmnt = document.querySelector("#tmr-min");
+  let tmrConElmnt = document.querySelector("#tomorrow-condition");
 
   tmrMxTmpElmnt.innerHTML = tmrMxTmp;
   tmrMnTmpElmnt.innerHTML = tmrMnTmp;
+  tmrConElmnt.innerHTML = tmrCon;
 
   // day after tomorrow
 
   let tmr1MxTmp = Math.round(response.data.daily[2].temperature.maximum);
   let tmr1MnTmp = Math.round(response.data.daily[2].temperature.minimum);
+  let tmr1Con = response.data.daily[1].condition.description;
 
   let tmr1MxTmpElmnt = document.querySelector("#tmr-plus-1-max");
   let tmr1MnTmpElmnt = document.querySelector("#tmr-plus-1-min");
+  let tmr1ConElmnt = document.querySelector("#tomorrow-1-condition");
 
   tmr1MxTmpElmnt.innerHTML = tmr1MxTmp;
   tmr1MnTmpElmnt.innerHTML = tmr1MnTmp;
+  tmr1ConElmnt.innerHTML = tmr1Con;
 
   // day 3
 
   let tmr2MxTmp = Math.round(response.data.daily[3].temperature.maximum);
   let tmr2MnTmp = Math.round(response.data.daily[3].temperature.minimum);
+  let tmr2Con = response.data.daily[1].condition.description;
 
   let tmr2MxTmpElmnt = document.querySelector("#tmr-plus-2-max");
   let tmr2MnTmpElmnt = document.querySelector("#tmr-plus-2-min");
+  let tmr2ConElmnt = document.querySelector("#tomorrow-2-condition");
 
   tmr2MxTmpElmnt.innerHTML = tmr2MxTmp;
   tmr2MnTmpElmnt.innerHTML = tmr2MnTmp;
+  tmr2ConElmnt.innerHTML = tmr2Con;
 
   // day 4
 
   let tmr3MxTmp = Math.round(response.data.daily[4].temperature.maximum);
   let tmr3MnTmp = Math.round(response.data.daily[4].temperature.minimum);
+  let tmr3Con = response.data.daily[1].condition.description;
 
   let tmr3MxTmpElmnt = document.querySelector("#tmr-plus-3-max");
   let tmr3MnTmpElmnt = document.querySelector("#tmr-plus-3-min");
+  let tmr3ConElmnt = document.querySelector("#tomorrow-3-condition");
 
   tmr3MxTmpElmnt.innerHTML = tmr3MxTmp;
   tmr3MnTmpElmnt.innerHTML = tmr3MnTmp;
+  tmr3ConElmnt.innerHTML = tmr3Con;
 }
 
 // Search Engine
