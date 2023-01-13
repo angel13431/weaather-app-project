@@ -179,3 +179,32 @@ function searchCity(event) {
 
 let searchEngine = document.querySelector("#search-form");
 searchEngine.addEventListener("submit", searchCity);
+
+// Unit converter
+
+function convertToF(event) {
+  if (unit === "celsius") {
+    let curTempElement = document.querySelector("#current-temp");
+    let curTemp = curTempElement.innerHTML;
+    let fahrenheit = Math.round(curTemp * 1.8 + 32);
+    curTempElement.innerHTML = fahrenheit;
+    unit = "fahrenheit";
+  }
+}
+
+function convertToC(event, temp) {
+  if (unit === "fahrenheit") {
+    let curTempElement = document.querySelector("#current-temp");
+    let curTemp = curTempElement.innerHTML;
+    let celsius = Math.round((curTemp - 32) * (5 / 9));
+    curTempElement.innerHTML = celsius;
+    unit = "celsius";
+  }
+}
+
+let unit = "celsius";
+let fahrenheit = document.querySelector("#fahrenheit");
+let celsius = document.querySelector("#celcius");
+
+celsius.addEventListener("click", convertToC);
+fahrenheit.addEventListener("click", convertToF);
