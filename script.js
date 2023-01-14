@@ -49,6 +49,35 @@ tmrPlusOne(number);
 tmrPlusTwo(number);
 tmrPlusThree(number);
 
+// Unit converter
+
+function convertToF(event) {
+  if (unit === "celsius") {
+    let curTempElement = document.querySelector("#current-temp");
+    let curTemp = curTempElement.innerHTML;
+    let fahrenheit = Math.round(curTemp * 1.8 + 32);
+    curTempElement.innerHTML = fahrenheit;
+    unit = "fahrenheit";
+  }
+}
+
+function convertToC(event, temp) {
+  if (unit === "fahrenheit") {
+    let curTempElement = document.querySelector("#current-temp");
+    let curTemp = curTempElement.innerHTML;
+    let celsius = Math.round((curTemp - 32) * (5 / 9));
+    curTempElement.innerHTML = celsius;
+    unit = "celsius";
+  }
+}
+
+let unit = "celsius";
+let fahrenheit = document.querySelector("#fahrenheit");
+let celsius = document.querySelector("#celsius");
+
+celsius.addEventListener("click", convertToC);
+fahrenheit.addEventListener("click", convertToF);
+
 // Temperature and condition
 
 function cptlFrstWrd(word) {
@@ -72,6 +101,8 @@ function showCurTemp(response) {
   curTempElement.innerHTML = curTemp;
   curConElement.innerHTML = curCon;
   curIconElement.src = curIcon;
+
+  unit = "celsius";
 }
 
 function showFTemp(response) {
@@ -156,6 +187,8 @@ function showFTemp(response) {
   tmr3MnTmpElmnt.innerHTML = tmr3MnTmp;
   tmr3ConElmnt.innerHTML = tmr3Con;
   tmr3IconElmnt.src = tmr3Icon;
+
+  unit = "celsius";
 }
 
 // Search Engine
@@ -179,32 +212,3 @@ function searchCity(event) {
 
 let searchEngine = document.querySelector("#search-form");
 searchEngine.addEventListener("submit", searchCity);
-
-// Unit converter
-
-function convertToF(event) {
-  if (unit === "celsius") {
-    let curTempElement = document.querySelector("#current-temp");
-    let curTemp = curTempElement.innerHTML;
-    let fahrenheit = Math.round(curTemp * 1.8 + 32);
-    curTempElement.innerHTML = fahrenheit;
-    unit = "fahrenheit";
-  }
-}
-
-function convertToC(event, temp) {
-  if (unit === "fahrenheit") {
-    let curTempElement = document.querySelector("#current-temp");
-    let curTemp = curTempElement.innerHTML;
-    let celsius = Math.round((curTemp - 32) * (5 / 9));
-    curTempElement.innerHTML = celsius;
-    unit = "celsius";
-  }
-}
-
-let unit = "celsius";
-let fahrenheit = document.querySelector("#fahrenheit");
-let celsius = document.querySelector("#celcius");
-
-celsius.addEventListener("click", convertToC);
-fahrenheit.addEventListener("click", convertToF);
