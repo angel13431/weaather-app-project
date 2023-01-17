@@ -53,20 +53,24 @@ tmrPlusThree(number);
 
 function convertToF(event) {
   if (unit === "celsius") {
-    let curTempElement = document.querySelector("#current-temp");
-    let curTemp = curTempElement.innerHTML;
-    let fahrenheit = Math.round(curTemp * 1.8 + 32);
-    curTempElement.innerHTML = fahrenheit;
+    for (let index = 0; index < 11; index++) {
+      document.querySelector(`#temp${index}`).innerHTML = parseInt(
+        Math.round(document.querySelector(`#temp${index}`).innerHTML) + 1.8 + 32
+      );
+    }
     unit = "fahrenheit";
   }
 }
 
 function convertToC(event, temp) {
   if (unit === "fahrenheit") {
-    let curTempElement = document.querySelector("#current-temp");
-    let curTemp = curTempElement.innerHTML;
-    let celsius = Math.round((curTemp - 32) * (5 / 9));
-    curTempElement.innerHTML = celsius;
+    for (let index = 0; index < 11; index++) {
+      document.querySelector(`#temp${index}`).innerHTML = parseInt(
+        Math.round(
+          (document.querySelector(`#temp${index}`).innerHTML - 32) * (5 / 9)
+        )
+      );
+    }
     unit = "celsius";
   }
 }
@@ -94,7 +98,7 @@ function showCurTemp(response) {
   let curCon = response.data.condition.description;
   let curIcon = response.data.condition.icon_url;
 
-  let curTempElement = document.querySelector("#current-temp");
+  let curTempElement = document.querySelector("#temp0");
   let curConElement = document.querySelector("#current-condition");
   let curIconElement = document.querySelector("#current-icon");
 
@@ -112,8 +116,8 @@ function showFTemp(response) {
   let todayMax = Math.round(response.data.daily[0].temperature.maximum);
   let todayMin = Math.round(response.data.daily[0].temperature.minimum);
 
-  let todayMaxElement = document.querySelector("#today-max");
-  let todayMinElement = document.querySelector("#today-min");
+  let todayMaxElement = document.querySelector("#temp1");
+  let todayMinElement = document.querySelector("#temp2");
 
   todayMaxElement.innerHTML = todayMax;
   todayMinElement.innerHTML = todayMin;
@@ -127,8 +131,8 @@ function showFTemp(response) {
 
   console.log(response.data.daily[1].condition.description);
 
-  let tmrMxTmpElmnt = document.querySelector("#tmr-max");
-  let tmrMnTmpElmnt = document.querySelector("#tmr-min");
+  let tmrMxTmpElmnt = document.querySelector("#temp3");
+  let tmrMnTmpElmnt = document.querySelector("#temp4");
   let tmrConElmnt = document.querySelector("#tomorrow-condition");
   let tmrIconElmnt = document.querySelector("#tomorrow-icon");
 
@@ -144,8 +148,8 @@ function showFTemp(response) {
   let tmr1Con = response.data.daily[2].condition.description;
   let tmr1Icon = response.data.daily[2].condition.icon_url;
 
-  let tmr1MxTmpElmnt = document.querySelector("#tmr-plus-1-max");
-  let tmr1MnTmpElmnt = document.querySelector("#tmr-plus-1-min");
+  let tmr1MxTmpElmnt = document.querySelector("#temp5");
+  let tmr1MnTmpElmnt = document.querySelector("#temp6");
   let tmr1ConElmnt = document.querySelector("#tomorrow-1-condition");
   let tmr1IconElmnt = document.querySelector("#tomorrow-1-icon");
 
@@ -161,8 +165,8 @@ function showFTemp(response) {
   let tmr2Con = response.data.daily[3].condition.description;
   let tmr2Icon = response.data.daily[3].condition.icon_url;
 
-  let tmr2MxTmpElmnt = document.querySelector("#tmr-plus-2-max");
-  let tmr2MnTmpElmnt = document.querySelector("#tmr-plus-2-min");
+  let tmr2MxTmpElmnt = document.querySelector("#temp7");
+  let tmr2MnTmpElmnt = document.querySelector("#temp8");
   let tmr2ConElmnt = document.querySelector("#tomorrow-2-condition");
   let tmr2IconElmnt = document.querySelector("#tomorrow-2-icon");
 
@@ -178,8 +182,8 @@ function showFTemp(response) {
   let tmr3Con = response.data.daily[4].condition.description;
   let tmr3Icon = response.data.daily[4].condition.icon_url;
 
-  let tmr3MxTmpElmnt = document.querySelector("#tmr-plus-3-max");
-  let tmr3MnTmpElmnt = document.querySelector("#tmr-plus-3-min");
+  let tmr3MxTmpElmnt = document.querySelector("#temp9");
+  let tmr3MnTmpElmnt = document.querySelector("#temp10");
   let tmr3ConElmnt = document.querySelector("#tomorrow-3-condition");
   let tmr3IconElmnt = document.querySelector("#tomorrow-3-icon");
 
