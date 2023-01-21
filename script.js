@@ -26,6 +26,13 @@ let now = new Date();
 let number = now.getDay();
 nextThreeDaysExceptTomorrow(number + 2);
 
+// document.querySelector(`#day${2}`).innerHTML =
+//   number + 2 <= 6 ? days[number + 2] : days[number + 2 - 7];
+// document.querySelector(`#day${3}`).innerHTML =
+//   number + 3 <= 6 ? days[number + 3] : days[number + 3 - 7];
+// document.querySelector(`#day${4}`).innerHTML =
+//   number + 4 <= 6 ? days[number + 4] : days[number + 4 - 7];
+
 // Unit converter
 
 function convertToF(event) {
@@ -67,7 +74,7 @@ function cptlFrstWrd(word) {
   return capitalWord;
 }
 function showCurTemp(response) {
-  console.log(response);
+  // console.log(response);
 
   let curTemp = Math.round(response.data.temperature.current);
   let curCon = response.data.condition.description;
@@ -82,7 +89,7 @@ function showCurTemp(response) {
   curIconElement.src = curIcon;
 }
 function showFTemp(response) {
-  console.log(response);
+  // console.log(response);
 
   for (let index = 0; index < 5; index++) {
     let maxTemp = Math.round(response.data.daily[index].temperature.maximum);
@@ -105,6 +112,7 @@ function showFTemp(response) {
 
 function searchCity(event) {
   event.preventDefault();
+
   let inputCity = document.querySelector(".search-city");
   let inputCityTitle = cptlFrstWrd(inputCity.value);
 
@@ -122,9 +130,26 @@ function searchCity(event) {
 
 let searchEngine = document.querySelector("#search-form");
 searchEngine.addEventListener("submit", searchCity);
-let city = "oslo";
 
-// // current location
+// Default city
+
+function defaultSet() {
+  let apiKey = "t59d1foebd7d6a037ffd3299548b5a20";
+  let apiUrlCur = `https://api.shecodes.io/weather/v1/current?query=${defaultCity}&key=${apiKey}&units=metric`;
+  let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${defaultCity}&key=${apiKey}&units=metric`;
+
+  axios.get(apiUrlCur).then(showCurTemp);
+  axios.get(apiUrlForecast).then(showFTemp);
+
+  let city = document.querySelector("#city");
+  city.innerHTML = defaultCity;
+}
+
+let defaultCity = "oslo";
+defaultSet(defaultCity);
+
+// current location
+
 // function handlePosition(position) {
 //   let lat = position.coords.latitude;
 //   let long = position.coords.longitude;
