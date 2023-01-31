@@ -26,13 +26,6 @@ let now = new Date();
 let number = now.getDay();
 nextThreeDaysExceptTomorrow(number + 2);
 
-// document.querySelector(`#day${2}`).innerHTML =
-//   number + 2 <= 6 ? days[number + 2] : days[number + 2 - 7];
-// document.querySelector(`#day${3}`).innerHTML =
-//   number + 3 <= 6 ? days[number + 3] : days[number + 3 - 7];
-// document.querySelector(`#day${4}`).innerHTML =
-//   number + 4 <= 6 ? days[number + 4] : days[number + 4 - 7];
-
 // Unit converter
 
 function convertToF(event) {
@@ -73,9 +66,20 @@ function cptlFrstWrd(word) {
   let capitalWord = firstLetter + remainingLetters;
   return capitalWord;
 }
-function showCurTemp(response) {
-  // console.log(response);
 
+function getTargetTime(response) {
+  let targetTime = new Date().toLocaleTimeString("en-GB", {
+    timeZone: response.data.results[0].timezone.name,
+  });
+  targetTime = parseInt(targetTime);
+  if (targetTime >= 7 && targetTime < 22) {
+    console.log("day");
+  } else {
+    console.log("night");
+  }
+}
+
+function showCurTemp(response) {
   let curTemp = Math.round(response.data.temperature.current);
   let curCon = response.data.condition.description;
   let curIcon = response.data.condition.icon_url;
@@ -87,10 +91,17 @@ function showCurTemp(response) {
   curTempElement.innerHTML = curTemp;
   curConElement.innerHTML = curCon;
   curIconElement.src = curIcon;
-}
-function showFTemp(response) {
-  // console.log(response);
 
+  let long = response.data.coordinates.longitude;
+  let lat = response.data.coordinates.latitude;
+
+  let apiKey = "bcc3cb81b1d84c1b975e2367fcb5772e";
+  let apiUrl = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${long}&format=json&apiKey=${apiKey}`;
+
+  axios.get(apiUrl).then(getTargetTime);
+}
+
+function showFTemp(response) {
   for (let index = 0; index < 5; index++) {
     let maxTemp = Math.round(response.data.daily[index].temperature.maximum);
     let minTemp = Math.round(response.data.daily[index].temperature.minimum);
@@ -145,19 +156,5 @@ function defaultSet() {
   city.innerHTML = defaultCity;
 }
 
-let defaultCity = "oslo";
+let defaultCity = "Oslo";
 defaultSet(defaultCity);
-
-// current location
-
-// function handlePosition(position) {
-//   let lat = position.coords.latitude;
-//   let long = position.coords.longitude;
-
-//   let apiKey = "t59d1foebd7d6a037ffd3299548b5a20";
-//   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${long}&lat=${lat}&key=${apiKey}&units=metric`;
-
-//   axios.get(apiUrl).then(showCurTemp, showFTemp);
-// }
-
-// navigator.geolocation.getCurrentPosition(handlePosition);

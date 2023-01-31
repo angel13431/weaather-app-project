@@ -11,10 +11,6 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <script
-      src="https://kit.fontawesome.com/c9182cecf9.js"
-      crossorigin="anonymous"
-    ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <style>
       .app {
@@ -24,14 +20,21 @@
         max-width: 55%;
       }
     </style>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merienda:wght@300&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
-      <div class="app border border-top-0 rounded">
-        <div class="row mb-5">
-          <div class="col-2"></div>
-          <h2 class="col-5" id="city">Tehran</h2>
-          <form class="col-4" id="search-form">
+      <div class="app border rounded">
+        <div class="row mb-5 mt-2 mr-1">
+          <div class="col-1"></div>
+          <h1 class="col-5" id="city"></h1>
+          <form class="col-6" id="search-form">
             <div class="form-group">
               <input
                 type="text"
@@ -44,12 +47,14 @@
         </div>
         <div class="row">
           <div class="col-2"></div>
-          <h1 class="col-1"><span id="temp0">10</span>°</h1>
-          <div class="col-1">
-            <span id="temp1">10</span>°/<span id="temp2">3</span>°
+          <!-- current temperature -->
+          <h1 class="col-2"><span id="temp0"></span>°</h1>
+          <div class="col-1 mt-5 min-max">
+            <!-- today's min and max -->
+            <span id="temp1"></span>°/<span id="temp2"></span>°
           </div>
-          <div class="col-4"></div>
-          <img src="" class="col-2" id="icon0" />
+          <div class="col-3"></div>
+          <img src="" class="col-3" id="icon0" />
         </div>
         <div class="row mb-5">
           <div class="col-2"></div>
@@ -61,47 +66,45 @@
           <div class="col-2" id="con0">sunny</div>
         </div>
         <div class="row">
-          <div class="col-2"></div>
-          <div class="col-2">Tomorrow</div>
-          <div class="col-2" id="day2"></div>
-          <div class="col-2" id="day3"></div>
-          <div class="col-2" id="day4"></div>
-          <div class="col-2"></div>
+          <div class="col-3">Tomorrow</div>
+          <div class="col-3" id="day2"></div>
+          <div class="col-3" id="day3"></div>
+          <div class="col-3" id="day4"></div>
+        </div>
+        <div class="row min-max">
+          <div class="col-3">
+            <span id="temp3"></span>°/<span id="temp4"></span>°
+          </div>
+          <div class="col-3">
+            <span id="temp5"></span>°/<span id="temp6"></span>°
+          </div>
+          <div class="col-3">
+            <span id="temp7"></span>°/<span id="temp8"></span>°
+          </div>
+          <div class="col-3">
+            <span id="temp9"></span>°/<span id="temp10"></span>°
+          </div>
         </div>
         <div class="row">
-          <div class="col-2"></div>
-          <div class="col-2">
-            <span id="temp3">10</span>°/<span id="temp4">2</span>°
-          </div>
-          <div class="col-2">
-            <span id="temp5">10</span>°/<span id="temp6">2</span>°
-          </div>
-          <div class="col-2">
-            <span id="temp7">10</span>°/<span id="temp8">2</span>°
-          </div>
-          <div class="col-2">
-            <span id="temp9">10</span>°/<span id="temp10">2</span>°
-          </div>
-          <div class="col-2"></div>
+          <img src="" class="col-3" id="icon1" />
+          <img src="" class="col-3" id="icon2" />
+          <img src="" class="col-3" id="icon3" />
+          <img src="" class="col-3" id="icon4" />
         </div>
         <div class="row">
-          <div class="col-2"></div>
-          <img src="" class="col-2" id="icon1" />
-          <img src="" class="col-2" id="icon2" />
-          <img src="" class="col-2" id="icon3" />
-          <img src="" class="col-2" id="icon4" />
-          <div class="col-2"></div>
-        </div>
-        <div class="row">
-          <div class="col-2"></div>
-          <div class="col-2" id="con1">sunny</div>
-          <div class="col-2" id="con2">sunny</div>
-          <div class="col-2" id="con3">sunny</div>
-          <div class="col-2" id="con4">sunny</div>
-          <div class="col-2"></div>
+          <div class="col-3 condition" id="con1"></div>
+          <div class="col-3 condition" id="con2"></div>
+          <div class="col-3 condition" id="con3"></div>
+          <div class="col-3 condition" id="con4"></div>
         </div>
       </div>
-      <div class="source-code"><a href="">Open-source code</a></div>
+      <div class="source-code">
+        <a
+          href="https://github.com/angel13431/weaather-app-project"
+          target="_blank"
+          >Open-source code</a
+        >
+      </div>
     </div>
     <script src="script.js"></script>
   </body>
