@@ -29,3 +29,6 @@ a:hover {
   text-align: left;
   margin-left: 10%;
 }
+.app {
+  border-radius: 30px;
+}

@@ -67,19 +67,7 @@ function cptlFrstWrd(word) {
   return capitalWord;
 }
 
-function getTargetTime(response) {
-  let targetTime = new Date().toLocaleTimeString("en-GB", {
-    timeZone: response.data.results[0].timezone.name,
-  });
-  targetTime = parseInt(targetTime);
-  if (targetTime >= 7 && targetTime < 22) {
-    console.log("day");
-  } else {
-    console.log("night");
-  }
-}
-
-function showCurTemp(response) {
+function showCur(response) {
   let curTemp = Math.round(response.data.temperature.current);
   let curCon = response.data.condition.description;
   let curIcon = response.data.condition.icon_url;
@@ -92,13 +80,52 @@ function showCurTemp(response) {
   curConElement.innerHTML = curCon;
   curIconElement.src = curIcon;
 
-  let long = response.data.coordinates.longitude;
+  let lon = response.data.coordinates.longitude;
   let lat = response.data.coordinates.latitude;
 
-  let apiKey = "bcc3cb81b1d84c1b975e2367fcb5772e";
-  let apiUrl = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${long}&format=json&apiKey=${apiKey}`;
+  // day and night and current time comparison and changing the color scheme
 
-  axios.get(apiUrl).then(getTargetTime);
+  let apiUrl = `https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}`;
+
+  axios.get(apiUrl).then((response) => {
+    let targetTime = new Date().toLocaleTimeString("en-GB", {
+      timeZone: response.data.results.timezone,
+    });
+    targetTime = parseInt(targetTime.replace(/:/g, ""));
+    let T = targetTime;
+
+    function add12(item, index, arr) {
+      if (item.slice(-2) === "PM") {
+        item = item.padStart(9, 0).replace(/PM/g, "");
+        let pmHrs = parseInt(item.slice(0, 2)) + 12;
+        pmHrs = pmHrs.toString();
+        item = item.replace(item.slice(0, 2), pmHrs);
+        arr[index] = parseInt(item.trim());
+      } else {
+        item = item.replace(/AM/g, "").trim();
+        arr[index] = parseInt(item);
+      }
+    }
+
+    let sunrise = response.data.results.sunrise.replace(/:/g, "");
+    let sunset = response.data.results.sunset.replace(/:/g, "");
+    let dawn = response.data.results.dawn.replace(/:/g, "");
+    let dusk = response.data.results.dusk.replace(/:/g, "");
+
+    let dayNight = [dawn, sunrise, sunset, dusk];
+
+    dayNight.forEach(add12);
+
+    if (T > dayNight[0] && T < dayNight[1]) {
+      console.log("Twilight-dawn");
+    } else if (T > dayNight[1] && T < dayNight[2]) {
+      console.log("Day");
+    } else if (T > dayNight[2] && T < dayNight[3]) {
+      console.log("Twilight-dusk");
+    } else {
+      console.log("Night");
+    }
+  });
 }
 
 function showFTemp(response) {
@@ -119,7 +146,7 @@ function showFTemp(response) {
   unit = "celsius";
 }
 
-// Search Engine
+// Search Engine (and checking if the request was valid)
 
 function searchCity(event) {
   event.preventDefault();
@@ -131,11 +158,24 @@ function searchCity(event) {
   let apiUrlCur = `https://api.shecodes.io/weather/v1/current?query=${inputCityTitle}&key=${apiKey}&units=metric`;
   let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${inputCityTitle}&key=${apiKey}&units=metric`;
 
-  axios.get(apiUrlCur).then(showCurTemp);
-  axios.get(apiUrlForecast).then(showFTemp);
+  axios.get(apiUrlCur).then((response) => {
+    if (response.data.status == "not_found") {
+    } else {
+      showCur(response);
+      let city = document.querySelector("#city");
+      city.innerHTML = inputCityTitle;
+    }
+  });
+  axios.get(apiUrlForecast).then((response) => {
+    if (response.data.status == "not_found") {
+      alert(
+        "Hmm...🤔 \nLooks like the city you have entered doesn't exist \nplease enter a city name again."
+      );
+    } else {
+      showFTemp(response);
+    }
+  });
 
-  let city = document.querySelector("#city");
-  city.innerHTML = inputCityTitle;
   inputCity.value = null;
 }
 
@@ -149,7 +189,7 @@ function defaultSet() {
   let apiUrlCur = `https://api.shecodes.io/weather/v1/current?query=${defaultCity}&key=${apiKey}&units=metric`;
   let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${defaultCity}&key=${apiKey}&units=metric`;
 
-  axios.get(apiUrlCur).then(showCurTemp);
+  axios.get(apiUrlCur).then(showCur);
   axios.get(apiUrlForecast).then(showFTemp);
 
   let city = document.querySelector("#city");
