@@ -1,5 +1,4 @@
 body {
-  background-color: rgb(238, 237, 237);
   font-family: "Merienda", cursive;
   text-align: center;
   color: rgb(223, 223, 223);
@@ -7,15 +6,8 @@ body {
 h1 {
   text-align: left;
 }
-.app {
-  background-color: rgba(41, 35, 92, 0.8);
-  padding: 2%;
-  margin-bottom: 1%;
-}
+
 a {
-  text-decoration: none;
-}
-a:hover {
   text-decoration: none;
 }
 .condition {
@@ -31,4 +23,19 @@ a:hover {
 }
 .app {
   border-radius: 30px;
+}
+.app {
+  padding: 2%;
+  margin-bottom: 1%;
+}
+#api-adress {
+  font-size: 10px;
+  display: block;
+  color: rgb(229, 229, 229);
+}
+#github {
+  color: rgb(229, 229, 229);
+}
+a:hover {
+  text-decoration: none;
 }

@@ -30,7 +30,7 @@
   </head>
   <body id="background">
     <div class="container">
-      <div class="app border rounded-lg">
+      <div class="app border-0 rounded-lg" id="app">
         <div class="row mb-5 mt-2 mr-1">
           <div class="col-1"></div>
           <h1 class="col-5" id="city"></h1>
@@ -56,6 +56,7 @@
           <div class="col-3"></div>
           <img src="" class="col-3" id="icon0" />
         </div>
+        <!-- celsius-fahrenheit and current condition -->
         <div class="row mb-5">
           <div class="col-2"></div>
           <div class="col-2">
@@ -63,8 +64,9 @@
             <a href="#disable" id="fahrenheit">F°</a>
           </div>
           <div class="col-4"></div>
-          <div class="col-2" id="con0">sunny</div>
+          <div class="col-3" id="con0"></div>
         </div>
+        <!-- forecast days -->
         <div class="row">
           <div class="col-3">Tomorrow</div>
           <div class="col-3" id="day2"></div>
@@ -98,11 +100,17 @@
           <div class="col-3 condition" id="con4"></div>
         </div>
       </div>
+      <!-- footer -->
       <div class="source-code">
         <a
+          id="github"
           href="https://github.com/angel13431/weaather-app-project"
           target="_blank"
           >Open-source code</a
+        >
+        <div class="w-100"></div>
+        <a id="api-adress" href="https://sunrisesunset.io" target="_blank"
+          >powered by SunriseSunset.io</a
         >
       </div>
     </div>

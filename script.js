@@ -117,13 +117,29 @@ function showCur(response) {
     dayNight.forEach(add12);
 
     if (T > dayNight[0] && T < dayNight[1]) {
-      console.log("Twilight-dawn");
+      // Twilight-Dawn
+      document.body.style.backgroundColor = "rgb(114, 17, 6)";
+      document.getElementById("app").style.backgroundColor =
+        "rgba(255, 233, 0, 0.3)";
+      document.body.style.color = "rgb(223, 223, 223)";
     } else if (T > dayNight[1] && T < dayNight[2]) {
-      console.log("Day");
+      // Day
+      document.body.style.backgroundColor = "rgb(0, 170, 145)";
+      document.body.style.color = "rgb(1, 1, 1)";
+      document.getElementById("app").style.backgroundColor =
+        "rgba(229, 229, 229, 0.8)";
     } else if (T > dayNight[2] && T < dayNight[3]) {
-      console.log("Twilight-dusk");
+      // Twilight-Dusk
+      document.body.style.backgroundColor = "rgb(92, 24, 69)";
+      document.getElementById("app").style.backgroundColor =
+        "rgba(9, 9, 18, 0.5)";
+      document.body.style.color = "rgb(223, 223, 223)";
     } else {
-      console.log("Night");
+      // Night
+      document.body.style.backgroundColor = "rgb(5,6,42)";
+      document.getElementById("app").style.backgroundColor =
+        "rgba(47, 43, 80, 0.5)";
+      document.body.style.color = "rgb(223, 223, 223)";
     }
   });
 }
@@ -159,11 +175,12 @@ function searchCity(event) {
   let apiUrlForecast = `https://api.shecodes.io/weather/v1/forecast?query=${inputCityTitle}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrlCur).then((response) => {
+    console.log(response);
     if (response.data.status == "not_found") {
     } else {
       showCur(response);
       let city = document.querySelector("#city");
-      city.innerHTML = inputCityTitle;
+      city.innerHTML = response.data.city;
     }
   });
   axios.get(apiUrlForecast).then((response) => {
