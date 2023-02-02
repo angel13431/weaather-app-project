@@ -68,17 +68,15 @@ function cptlFrstWrd(word) {
 }
 
 function showCur(response) {
-  let curTemp = Math.round(response.data.temperature.current);
-  let curCon = response.data.condition.description;
-  let curIcon = response.data.condition.icon_url;
+  console.log(response);
 
-  let curTempElement = document.querySelector("#temp0");
-  let curConElement = document.querySelector("#con0");
-  let curIconElement = document.querySelector("#icon0");
-
-  curTempElement.innerHTML = curTemp;
-  curConElement.innerHTML = curCon;
-  curIconElement.src = curIcon;
+  document.getElementById("temp0").innerHTML = Math.round(
+    response.data.temperature.current
+  );
+  document.getElementById("con0").innerHTML =
+    response.data.condition.description;
+  document.getElementById("icon0").src = response.data.condition.icon_url;
+  document.getElementById("wind").innerHTML = response.data.wind.speed;
 
   let lon = response.data.coordinates.longitude;
   let lat = response.data.coordinates.latitude;
@@ -91,6 +89,7 @@ function showCur(response) {
     let targetTime = new Date().toLocaleTimeString("en-GB", {
       timeZone: response.data.results.timezone,
     });
+    document.getElementById("time").innerHTML = targetTime.slice(0, 5);
     targetTime = parseInt(targetTime.replace(/:/g, ""));
     let T = targetTime;
 
@@ -149,13 +148,13 @@ function showFTemp(response) {
     let maxTemp = Math.round(response.data.daily[index].temperature.maximum);
     let minTemp = Math.round(response.data.daily[index].temperature.minimum);
 
-    document.querySelector(`#temp${index * 2 + 1}`).innerHTML = maxTemp;
-    document.querySelector(`#temp${index * 2 + 2}`).innerHTML = minTemp;
+    document.getElementById(`temp${index * 2 + 1}`).innerHTML = maxTemp;
+    document.getElementById(`temp${index * 2 + 2}`).innerHTML = minTemp;
     if (index > 0) {
-      document.querySelector(`#icon${index}`).src =
+      document.getElementById(`icon${index}`).src =
         response.data.daily[index].condition.icon_url;
 
-      document.querySelector(`#con${index}`).innerHTML =
+      document.getElementById(`con${index}`).innerHTML =
         response.data.daily[index].condition.description;
     }
   }
@@ -179,8 +178,7 @@ function searchCity(event) {
     if (response.data.status == "not_found") {
     } else {
       showCur(response);
-      let city = document.querySelector("#city");
-      city.innerHTML = response.data.city;
+      document.getElementById("city").innerHTML = response.data.city;
     }
   });
   axios.get(apiUrlForecast).then((response) => {
@@ -196,7 +194,7 @@ function searchCity(event) {
   inputCity.value = null;
 }
 
-let searchEngine = document.querySelector("#search-form");
+let searchEngine = document.getElementById("search-form");
 searchEngine.addEventListener("submit", searchCity);
 
 // Default city
@@ -209,8 +207,7 @@ function defaultSet() {
   axios.get(apiUrlCur).then(showCur);
   axios.get(apiUrlForecast).then(showFTemp);
 
-  let city = document.querySelector("#city");
-  city.innerHTML = defaultCity;
+  document.getElementById("city").innerHTML = defaultCity;
 }
 
 let defaultCity = "Oslo";

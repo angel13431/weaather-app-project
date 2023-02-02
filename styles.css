@@ -28,6 +28,14 @@ a {
   padding: 2%;
   margin-bottom: 1%;
 }
+.wind {
+  color: gray;
+  font-size: 10px;
+}
+#wind {
+  color: gray;
+  font-size: 10px;
+}
 #api-adress {
   font-size: 10px;
   display: block;
@@ -35,6 +43,15 @@ a {
 }
 #github {
   color: rgb(229, 229, 229);
+}
+#target-time {
+  font-size: 12px;
+  top: -150px;
+}
+.time {
+  font-size: 10px;
+
+  color: gray;
 }
 a:hover {
   text-decoration: none;
