@@ -16,6 +16,7 @@ a {
 .min-max {
   color: gray;
   font-size: 13px;
+  top: 20px;
 }
 .source-code {
   text-align: left;
@@ -31,6 +32,12 @@ a {
 .wind {
   color: gray;
   font-size: 10px;
+}
+#con0 {
+  bottom: 25px;
+}
+#icon0 {
+  bottom: 30px;
 }
 #wind {
   color: gray;
