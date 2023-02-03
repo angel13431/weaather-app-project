@@ -15,8 +15,8 @@ a {
 }
 .min-max {
   color: gray;
-  font-size: 13px;
-  top: 20px;
+  font-size: 17px;
+  bottom: -15px;
 }
 .source-code {
   text-align: left;
@@ -32,16 +32,18 @@ a {
 .wind {
   color: gray;
   font-size: 10px;
+  bottom: -20px;
 }
 #con0 {
-  bottom: 40px;
+  bottom: 55px;
 }
 #icon0 {
-  bottom: -15px;
+  bottom: 20px;
 }
 #wind {
   color: gray;
   font-size: 10px;
+  bottom: -20px;
 }
 #api-adress {
   font-size: 10px;
@@ -57,8 +59,11 @@ a {
 }
 .time {
   font-size: 10px;
-
+  bottom: 80px;
   color: gray;
+}
+.convert {
+  bottom: 57px;
 }
 a:hover {
   text-decoration: none;
