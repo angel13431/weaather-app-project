@@ -18,6 +18,10 @@ a {
   font-size: 17px;
   bottom: -15px;
 }
+.min-max-f {
+  color: gray;
+  font-size: 12px;
+}
 .source-code {
   text-align: left;
   margin-left: 10%;
